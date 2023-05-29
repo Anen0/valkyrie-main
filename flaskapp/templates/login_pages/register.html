@@ -1,0 +1,102 @@
+{% extends "login_pages/layout_login.html" %}
+{% block login_content %}
+
+    <!-- Login card start -->
+    <form class="md-float-material form-material" action="{{ url_for('main.register') }}" method="POST">
+        <!-- <div class="text-center">
+            <img src="{{ url_for('static', filename='libraries/assets/images/logo.png') }}" class="img-100" alt="logo.png">
+        </div> -->
+        <div class="auth-box card">
+            <div class="card-block">
+                <div class="row">
+                    <div class="col-md-12">
+                        <!-- <h3 class="text-center"><i class="feather icon-lock text-primary f-60 p-t-15 p-b-20 d-block"></i></h3> -->
+                        <h3 class="text-center"><i class="fa fa-fighter-jet text-primary f-60 d-block"></i></h3>
+                        <h3 class="text-center p-b-20">Register</h3>
+                    </div>
+                </div>
+            
+                    {{ form.hidden_tag() }}
+                    <!-- Username -->
+                        <div class="form-group form-primary">
+                            {% if form.username.errors %}
+                                {{ form.username(class="form-control is-invalid", placeholder="Username") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.username.errors %}
+                                        <h5>{{ error }}</h5>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.username(class="form-control", placeholder="Username") }}
+                            {% endif %}
+                        </div>
+
+                    <!-- Email -->
+                        <div class="form-group form-primary">
+                            {% if form.email.errors %}
+                                {{ form.email(class="form-control is-invalid", placeholder="Email") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.email.errors %}
+                                        <h5>{{ error }}</h5>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.email(class="form-control", placeholder="Email") }}
+                            {% endif %}
+                        </div>
+
+                    
+                    <!-- Password -->
+                        <div class="form-group form-primary">
+                            <!-- <input type="password" name="password" class="form-control" required="" placeholder="Password"> -->
+                            {% if form.password.errors %}
+                                {{ form.password(class="form-control is-invalid", placeholder="Password") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.password.errors %}
+                                        <h5>{{ error }}</h5>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.password(class="form-control", placeholder="Password") }}
+                            {% endif %}
+                        </div>
+                        
+                    <!-- Confirm password -->
+                        <div class="form-group form-primary">
+                            <!-- <input type="password" name="confirm_password" class="form-control" required="" placeholder="Confirm Password"> -->
+                            {% if form.confirm_password.errors %}
+                                {{ form.confirm_password(class="form-control is-invalid", placeholder="Confirm password") }}
+                                <div class="invalid-feedback">
+                                    {% for error in form.confirm_password.errors %}
+                                        <h5>{{ error }}</h5>
+                                    {% endfor %}
+                                </div>
+                            {% else %}
+                                {{ form.confirm_password(class="form-control", placeholder="Confirm password") }}
+                            {% endif %}
+                        </div>
+
+                    <!-- Register Button -->
+                        <div class="form-group row">
+                            <div class="col-md-12">
+                                <button type="submit" class="btn btn-primary btn-md btn-block m-b-20"><i class="fa fa-user-plus f-18"></i> Register </button>
+                                <!-- {{ form.submit(class='btn btn-primary btn-md btn-block m-b-20') }} -->
+                            </div>
+                        </div>
+
+                    <hr>
+                    
+            
+
+                <!-- Login route -->
+                <div class="text-center m-b-15">
+                    <h6 class="m-b-10">Already have an account?</h6>
+                    <a href="{{ url_for('main.login') }}" type="button" class="btn btn-outline-primary"><i class="fa fa-sign-in f-18"></i> Login </a>
+                </div>
+            
+            </div>
+        </div>
+    </form>
+    <!-- Login card end -->
+
+{% endblock %}
