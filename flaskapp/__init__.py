@@ -1,7 +1,6 @@
 #!/usr/bin/env python
 # PACKAGES
 from flask import Flask
-from flask_mysqldb import MySQL
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask_jsglue import JSGlue
@@ -14,7 +13,6 @@ from flaskapp.config import Config
 
 
 # SET PACKAGES
-# mysql           = MySQL()
 db              = SQLAlchemy()
 migrate         = Migrate()
 bcrypt          = Bcrypt()

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="utf-8" />
-	<title>Color Admin | One Page Parallax Front End Theme</title>
+	<title>Valkyrie Security Inc.</title>
 	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
 	<meta content="" name="description" />
 	<meta content="" name="author" />
@@ -10,6 +10,8 @@
 	<!-- ================== BEGIN BASE CSS STYLE ================== -->
 	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
 	<link href="{{ url_for('static', filename='custom_css/google_font.css') }}" rel="stylesheet">
+	<link href="{{ url_for('static', filename='custom_css/google_fonts_roboto.css') }}" rel="styl/esheet">
+	<!-- <link href="{{ url_for('static', filename='custom_css/google_fonts_oswald.css') }}" rel="styl/esheet"> -->
 	<link href="{{ url_for('static', filename='one-page-parallax/css/app.min.css') }}" rel="stylesheet" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 </head>
@@ -22,7 +24,7 @@
 			<div class="container">
 				<!-- begin navbar-brand -->
 				<a href="index.html" class="navbar-brand">
-					<span class="brand-logo"></span>
+					<!-- <span class="brand-logo"></span> -->
 					<span class="brand-text">
 						<span class="f-w-600">VALKYRIE</span>
 					</span>
@@ -65,13 +67,14 @@
 			</div>
 			<!-- end content-bg -->
 			<!-- begin container -->
-			<div class="container home-content text-inverse" style="top: 25%;">
-				<img class="mb-1" src="{{ url_for('static', filename='one-page-parallax/img/custom_img/valkyrie.png') }}" alt="" style="height: 500px;" >
+			<div class="container home-content text-inverse" style="top: 30%;">
+				
+				<img class="img-fluid mb-1 logo" src="{{ url_for('static', filename='one-page-parallax/img/custom_img/valkyrie.png') }}" alt="" style="width: 600px;" >
+				
 				<!-- <h1>Welcome to Color Admin</h1>-->
-				<!-- <h3 class="text-inverse f-w-600">VIP security services tailored to your unique needs and requirements</h3>  -->
-				<h3 class="text-inverse f-w-600">VIP security services tailored to your unique needs and requirements</h3> 
+				<!-- <h3 class="text-inverse f-w-600">VIP security services tailored to your unique needs</h3>  -->
+				<h2 class="text-inverse f-w-600 roboto_con_700">VALKYRIE SECURITY INCORPORATED</h2> 
 				<p class="f-s-15 f-w-500 mb-3">
-
 					Private security is our specialty, and we prioritize the safety and privacy of our clients above all else. 
 				</p>
 				<p class="f-s-15 f-w-500 mb-3">
@@ -530,12 +533,22 @@
 			<!-- begin container -->
 			<div class="container p-b-40">
 				<h2 class="content-title">Have an inquiry?</h2>
-				<p class="content-desc">
-					Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum consectetur eros dolor,<br />
-					sed bibendum turpis luctus eget
-				</p>
+				<!-- <p class="content-desc">
+					Ground Floor, Ashgard Industries Bldg., C. Congson St., Cambiohan, Casili, Consolacion, Cebu, 6001
+				</p> -->
 				
-				<div class="row">
+				
+				<div class="row justify-content-center">
+					<!-- <div class="col"></div>
+					
+					<div class="col-lg-8 p-b-30" data-animation="true" data-animation-type="fadeInRight">
+						<i class="fas fa-map-marker-alt fa-2x fa-fw m-r-10 text-primary"></i>
+						<span>Ground Floor, Ashgard Industries Bldg., C. Congson St., Cambiohan, Casili, Consolacion, Cebu, 6001</span>
+					</div>
+					
+					<div class="col"></div> -->
+
+					
 					<div class="col-lg-4" data-animation="true" data-animation-type="fadeInRight">
 						<div class="row">
 							<div class="col-2">
@@ -549,10 +562,7 @@
 							<div class="col-10">
 								<h5>Addess</h5>
 								<p>
-									Cebu Office: C. Congson St., Cambiohan, Casili, Consolacion, Cebu, Philippines
-								</p>
-								<p>
-									Manila Office: S-3 2F, Antel SPA and Serenity Suites, Gen. Luna St., corner Makati Ave., and Salamanca St., Makati City, Ph
+									Ground Floor, Ashgard Industries Bldg., C. Congson St., Cambiohan, Casili, Consolacion, Cebu, 6001
 								</p>
 							</div>
 						</div>
@@ -570,8 +580,7 @@
 							</div>
 							<div class="col-10">
 								<h5>Contact number</h5>
-								<p>Cebu: 216850465</p>
-								<p>Makati: 216850465</p>
+								<p>09602710443</p>
 							</div>
 						</div>
 					</div>
@@ -588,11 +597,22 @@
 							</div>
 							<div class="col-10">
 								<h5>Email</h5>
-								<p>email_contact_@g1.com</p>
-								<p>email_contact_@g2.com</p>
+								<p>valkyrie@ashgard.com.ph</p>
 							</div>
 						</div>
-						
+					</div>
+
+					<div class="col-lg-4 form-col" data-animation="true" data-animation-type="fadeInRight">
+						<h6>SOSIA Hotline: &nbsp; (02) 87230401 loc. 4318</h6>
+						<h6>EMD: &nbsp; 09395787633</h6>
+					</div>
+					<div class="col-lg-4 form-col" data-animation="true" data-animation-type="fadeInRight">
+						<h6>SLD: &nbsp; (02) 85349878</h6>
+						<h6>STMD: &nbsp; (02) 86503542</h6>
+					</div>
+					<div class="col-lg-4 form-col" data-animation="true" data-animation-type="fadeInRight">
+						<h6>SCMD: &nbsp; (02) 6380583</h6>
+						<h6>RCSU 7: &nbsp; (032) 341-4362</h6>
 					</div>
 
 				</div>

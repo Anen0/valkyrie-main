@@ -1,5 +1,6 @@
-import os
+import os, json
 from urllib.parse import quote as url_quote
+
 
 class Config:
     # Set up secret key
