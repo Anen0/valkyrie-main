@@ -20,72 +20,17 @@ from flaskapp.py_routes.main_routes import main
 # @login_required
 def main_dashboard():
     page_title = 'Main page'
-    # form = Basic_post()
 
     if request.method == 'GET':
         return render_template('general/dashboard.html', page_title=page_title)
-
-    # if request.method == 'POST':
-    #     st_str = request.form['s_string']
-    #     st_int = request.form['s_int']
-    #     st_txt = request.form['s_txt']
-
-    #     form_data = Crud_tbl(
-    #         some_string   = st_str,
-    #         some_int      = st_int,
-    #         some_text     = st_txt
-    #     )
-    #     db.session.add(form_data)
-    #     db.session.commit()
-
-    #     status = jsonify({
-    #             'string': st_str,
-    #             'integer': st_int,
-    #             'text': st_txt,
-    #             'status':'ADDED'
-    #         })
-    #     return status
     
 
-
-
-@main.route('/crud_view', methods=['GET'])
-def crud_view():
-    if request.method == 'GET':
-        views = Crud_tbl.query.all()
-        tmp_list = list()
-        for i in views:
-            k = {
-                'ct_id'        : i.ct_id,
-                'some_string'  : i.some_string,
-                'some_text'    : i.some_text,
-                'some_int'     : i.some_int,
-                'dtg'     : i.dtg
-            }
-            tmp_list.append(k)
-        # return jsonify(tmp)
-
-            tmp = table_builder.crud_dt_serverside(request, tmp_list)
-        return jsonify(tmp)
-        
-
-
-@main.route('/crud_update', methods=['GET', 'POST'])
-def crud_update():
-    pass
-
-@main.route('/crud_delete', methods=['GET', 'POST'])
-def crud_delete():
-    pass
-
-
-
-@main.route('/dashboard_h', methods=['GET', 'POST'])
-def main_dashboard_h():
-    page_title = 'Main page - Horizontal'
+@main.route('/app_form', methods=['GET', 'POST'])
+def app_form():
+    page_title = 'Application page'
 
     if request.method == 'GET':
-        return render_template('general/dashboard_H.html', page_title=page_title)
+        return render_template('general/job_form.html', page_title=page_title)
 
 
 
