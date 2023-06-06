@@ -11,34 +11,36 @@
 	<!-- <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet" /> -->
 	<link href="{{ url_for('static', filename='custom_css/google_font.css') }}" rel="stylesheet">
 	<link href="{{ url_for('static', filename='custom_css/google_fonts_roboto.css') }}" rel="styl/esheet">
-	<!-- <link href="{{ url_for('static', filename='custom_css/google_fonts_oswald.css') }}" rel="styl/esheet"> -->
 	<link href="{{ url_for('static', filename='one-page-parallax/css/form-app.min.css') }}" rel="stylesheet" />
+
 	<!-- ================== END BASE CSS STYLE ================== -->
 </head>
 <body>
-  <!-- begin #header -->
+    <!-- begin #page-loader -->
+	<div id="page-loader" class="fade show">
+		<span class="spinner"></span>
+	</div>
+	<!-- end #page-loader -->
+
+    <!-- begin #header -->
 	<div id="header" class="header navbar navbar-default navbar-fixed-top navbar-expand-lg">
 		<!-- begin container -->
 		<div class="container">
-			<!-- begin navbar-brand -->
 			<a href="#" class="navbar-brand">
 				<span class="brand-text">
-					Valkyrie Application Form
+                    <span class="f-w-600">VALKYRIE</span>
 				</span>
 			</a>
-			<!-- end navbar-brand -->
-			<!-- begin navbar-toggle -->
 			<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#header-navbar">
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			</button>
-			<!-- end navbar-toggle -->
-			
 		</div>
 		<!-- end container -->
 	</div>
 	<!-- end #header -->
+    
 	
 	<!-- begin search-banner -->
 	<div class="search-banner has-bg">
@@ -47,7 +49,7 @@
 		<!-- end bg-cover -->
 		<!-- begin container -->
 		<div class="container">
-			<h1>Come join our crew</h1>
+			<h1>VALKYRIE APPLICATION FORM</h1>
 			<h5 class="f-s-14 m-b-10">Provided training to out personnel</h5>
 			<ul class="popular-tags">
 				<li><a href="#"><i class="fa fa-circle"></i> Firearms handling</a></li>
@@ -67,18 +69,19 @@
 			<!-- begin card-forum -->
 			<div class="card card-forum mb-3">
 				<!-- begin card-header -->
-				<div class="card-header f-w-600">
-					Official Management District
+				<div class="card-header">
+					<span class="f-w-600 f-s-18">Inputs with a red asterisk (<span class="text-danger f-s-17">*</span>) are required.</span>
+				
 				</div>
 				<!-- end card-header -->
-                <div class="card-body">
-
-                        <legend class="m-b-15"><i class="fas fa-sm  m-r-5 fa-user"></i> Fullname</legend>
-                        <div class="row row-space-10">
+                <div class="card-body my-5">
+                    <form action="/upload" id="upload-resume" enctype="multipart/form-data" method="POST">
+                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-user"></i> FULLNAME</legend>
+                        <div class="row row-space-10 px-5">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="first_name" placeholder="First Name">
-                                    <label for="First Name">First Name</label>
+                                    <input type="text" class="form-control form-control-lg" id="first_name" placeholder="First Name" data-parsley-required="true" required />
+                                    <label for="First Name"><span class="text-danger f-s-17">*</span> First Name</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
@@ -86,35 +89,35 @@
                                 <label for="Middle Name">Middle Name</label>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="last_name" placeholder="Last Name">
-                                <label for="Last Name">Last Name</label>
+                                <input type="text" class="form-control form-control-lg" id="last_name" placeholder="Last Name" required>
+                                <label for="Last Name"><span class="text-danger f-s-17">*</span> Last Name</label>
                             </div>
                         </div>
 
-                        <legend class="m-b-15"><i class="fas fa-sm  m-r-5 fa-calendar-alt"></i>  Date of birth</legend>
-                        <div class="row row-space-10">
+                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-calendar-alt"></i> DATE OF BIRTH</legend>
+                        <div class="row row-space-10 px-5">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="month" placeholder="Month">
-                                    <label for="Month">Month</label>
+                                    <input type="text" class="form-control form-control-lg" id="month" placeholder="Month" required>
+                                    <label for="Month"><span class="text-danger f-s-17">*</span> Month</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="day" placeholder="Day">
-                                <label for="Day">Day</label>
+                                <input type="text" class="form-control form-control-lg" id="day" placeholder="Day" required>
+                                <label for="Day"><span class="text-danger f-s-17">*</span> Day</label>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="year" placeholder="Year">
-                                <label for="Year">Year</label>
+                                <input type="text" class="form-control form-control-lg" id="year" placeholder="Year" required>
+                                <label for="Year"><span class="text-danger f-s-17">*</span> Year</label>
                             </div>
                         </div>
                         
-                        <legend class="m-b-15"><i class="fas fa-sm  m-r-5 fa-map-marker-alt"></i> Address</legend>
-                        <div class="row row-space-10">
+                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-map-marker-alt"></i> ADDRESS</legend>
+                        <div class="row row-space-10 px-5">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="street_add" placeholder="Street address">
-                                    <label for="">Street address</label>
+                                    <input type="text" class="form-control form-control-lg" id="street_add" required>
+                                    <label for=""><span class="text-danger f-s-17">*</span> Street address</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
@@ -125,54 +128,67 @@
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="city" placeholder="City">
-                                    <label for="">City</label>
+                                    <input type="text" class="form-control form-control-lg" id="city" required>
+                                    <label for=""><span class="text-danger f-s-17">*</span> City</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="province" placeholder="Province">
-                                    <label for="">Province</label>
+                                    <input type="text" class="form-control form-control-lg" id="province" required>
+                                    <label for=""><span class="text-danger f-s-17">*</span> Province</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="zip_code" placeholder="Zip Code">
-                                    <label for="">Zip Code</label>
+                                    <input type="text" class="form-control form-control-lg" id="zip_code" placeholder="6000" required>
+                                    <label for=""><span class="text-danger f-s-17">*</span> Zip Code</label>
                                 </div>
                             </div>
                         </div>
                         
-                        <legend class="m-b-15"><i class="fas fa-sm  m-r-5 fa-envelope"></i> Contact</legend>
-                        <div class="row row-space-10">
+                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-envelope"></i> CONTACT</legend>
+                        <div class="row row-space-10 px-5">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="city" placeholder="City">
-                                    <label for="">City</label>
+                                    <input type="email" class="form-control form-control-lg" id="email" required>
+                                    <label for=""><span class="text-danger f-s-17">*</span> Email</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="province" placeholder="">
-                                    <label for="">Phone number</label>
+                                    <input type="text" class="form-control form-control-lg" id="phone_num" required>
+                                    <label for=""><span class="text-danger f-s-17">*</span> Phone number</label>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="linkedin" placeholder="">
+                                    <input type="text" class="form-control form-control-lg" id="linkedin">
                                     <label for="LinkedIn">LinkedIn (if any)</label>
                                 </div>
                             </div>
                         </div>
+
+
+                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-envelope"></i> UPLOAD RESUME</legend>
+                        <div class="row row-space-10 px-5">
+                            <div class="col-md-12">
+                                <input type="file" class="custom-file-input form-control form-control-lg" id="upload-resume" required>
+                                <label class="mb-3 custom-file-label" style="font-weight: 300" id="file_input_label"><span class="text-danger f-s-17">*</span> Upload .doc, .docx, .pdf</label>
+                            </div>
+                        </div>
                         
+                        <br>
+                        <br>
+                        <hr>
+                        <div class="row row-space-10 px-5">
+                            <div class="col-md-12 text-center">
+                                
+                                <button type="submit" class="btn btn-lg btn-primary m-r-5">SUBMIT APPLICATION</button>
 
-
-
-                        <!-- <button type="submit" class="btn btn-sm btn-primary m-r-5">Login</button>
-                        <button type="submit" class="btn btn-sm btn-default">Cancel</button> -->
-                            
-
-
+                            </div>
+                        </div>
+                        
+                    </form>
 
                 </div>
 			</div>
@@ -182,12 +198,9 @@
 	<!-- end content -->
 
     <div id="footer" class="footer">
-		<!-- begin container -->
 		<div class="container">
-			<!-- begin row -->
 			<div class="row">
 				<div class="col-md-4">
-					<!-- begin section-container -->
 					<div class="section-container">
 						<h4 class="footer-title">About Color Admin</h4>
 						<p>
@@ -196,13 +209,9 @@
 							ullamcorper nec et eros. Suspendisse consectetur nulla ut volutpat aliquam.
 						</p>
 					</div>
-					<!-- end section-container -->
 				</div>
-				<!-- end col-4 -->
 			</div>
-			<!-- end row -->
 		</div>
-		<!-- end container -->
 	</div>
 	
 	<!-- begin #footer-copyright -->
@@ -222,6 +231,11 @@
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ url_for('static', filename='one-page-parallax/js/form-app.min.js') }} "></script>
+<!--     
+	<script src="{{ url_for('static', filename='assets/plugins/parsleyjs/dist/parsley.min.js') }} "></script>
+	<script src="{{ url_for('static', filename='assets/plugins/highlight.js/highlight.min.js') }} "></script>
+	<script src="{{ url_for('static', filename='assets/js/demo/render.highlight.js') }} "></script> -->
+
 	<!-- ================== END BASE JS ================== -->
 </body>
 </html>
