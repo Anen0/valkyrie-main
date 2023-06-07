@@ -34,6 +34,8 @@ def job_form():
         return render_template('general/job_form.html', page_title=page_title)
 
     
+    # if request.method == 'POST':
+
 
 
 
