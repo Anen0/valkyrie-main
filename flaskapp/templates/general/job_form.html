@@ -12,7 +12,9 @@
 	<link href="{{ url_for('static', filename='custom_css/google_font.css') }}" rel="stylesheet">
 	<link href="{{ url_for('static', filename='custom_css/google_fonts_roboto.css') }}" rel="styl/esheet">
 	<link href="{{ url_for('static', filename='one-page-parallax/css/form-app.min.css') }}" rel="stylesheet" />
-
+    
+	<link href="{{ url_for('static', filename='assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.css') }} " rel="stylesheet" />
+	<link href="{{ url_for('static', filename='assets/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker3.css') }} " rel="stylesheet" />
 	<!-- ================== END BASE CSS STYLE ================== -->
 </head>
 <body>
@@ -45,12 +47,12 @@
 	<!-- begin search-banner -->
 	<div class="search-banner has-bg">
 		<!-- begin bg-cover -->
-		<div class="bg-cover" data-paroller="true" data-paroller-factor="0.5" data-paroller-factor-xs="0.01" style="background-image: url(static/one-page-parallax//img/cover/cover-1.jpg)"></div>
+		<div class="bg-cover" data-paroller="true" data-paroller-factor="0.5" data-paroller-factor-xs="0.01" style="background-image: url(static/one-page-parallax/img/cover/cover_mod.jpg)"></div>
 		<!-- end bg-cover -->
 		<!-- begin container -->
 		<div class="container">
 			<h1>VALKYRIE APPLICATION FORM</h1>
-			<h5 class="f-s-14 m-b-10">Provided training to out personnel</h5>
+			<h5 class="f-s-14 m-b-10">Provided training to our personnel</h5>
 			<ul class="popular-tags">
 				<li><a href="#"><i class="fa fa-circle"></i> Firearms handling</a></li>
 				<li><a href="#"><i class="fa fa-circle"></i> Marksman training</a></li>
@@ -63,7 +65,7 @@
 	<!-- end search-banner -->
 	
 	<!-- begin content -->
-	<div class="content">
+	<div class="content pb-5">
 		<!-- begin container -->
 		<div class="container">
 			<!-- begin card-forum -->
@@ -75,8 +77,8 @@
 				</div>
 				<!-- end card-header -->
                 <div class="card-body my-5">
-                    <form action="/upload" id="upload-resume" enctype="multipart/form-data" method="POST">
-                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-user"></i> FULLNAME</legend>
+                    <form id="upload-resume" enctype="multipart/form-data" method="POST">
+                        <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-user"></i> FULLNAME</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-4">
                                 <div class="form-group">
@@ -94,25 +96,15 @@
                             </div>
                         </div>
 
-                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-calendar-alt"></i> DATE OF BIRTH</legend>
+                        <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-calendar-alt"></i> DATE OF BIRTH</legend>
                         <div class="row row-space-10 px-5">
-                            <div class="col-md-4">
-                                <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="month" placeholder="Month" required>
-                                    <label for="Month"><span class="text-danger f-s-17">*</span> Month</label>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="day" placeholder="Day" required>
-                                <label for="Day"><span class="text-danger f-s-17">*</span> Day</label>
-                            </div>
-                            <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="year" placeholder="Year" required>
-                                <label for="Year"><span class="text-danger f-s-17">*</span> Year</label>
+                            <div class="col-md-12">
+                                <input type="text" class="form-control form-control-lg" id="datepicker" placeholder="mm / dd / yyyy">
+                                <label for="Year"><span class="text-danger f-s-17">*</span> pick the date</label>
                             </div>
                         </div>
                         
-                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-map-marker-alt"></i> ADDRESS</legend>
+                        <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-map-marker-alt"></i> ADDRESS</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-12">
                                 <div class="form-group">
@@ -146,7 +138,7 @@
                             </div>
                         </div>
                         
-                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-envelope"></i> CONTACT</legend>
+                        <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-envelope"></i> CONTACT</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-6">
                                 <div class="form-group">
@@ -169,11 +161,11 @@
                         </div>
 
 
-                        <legend class="m-b-15 px-5"><i class="fas fa-sm  m-r-5 fa-envelope"></i> UPLOAD RESUME</legend>
+                        <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-envelope"></i> UPLOAD RESUME</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-12">
-                                <input type="file" class="custom-file-input form-control form-control-lg" id="upload-resume" required>
-                                <label class="mb-3 custom-file-label" style="font-weight: 300" id="file_input_label"><span class="text-danger f-s-17">*</span> Upload .doc, .docx, .pdf</label>
+                                <input type="file" class="custom-file-input_ form-control form-control-lg" id="file_input" required>
+                                <label class="mb-3 custom-file-label_" style="font-weight: 300" id="file_input_label"><span class="text-danger f-s-17">*</span> Upload .doc, .docx, .pdf</label>
                             </div>
                         </div>
                         
@@ -197,41 +189,84 @@
 	</div>
 	<!-- end content -->
 
-    <div id="footer" class="footer">
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4">
-					<div class="section-container">
-						<h4 class="footer-title">About Color Admin</h4>
-						<p>
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Fusce ultrices ipsum in elementum porttitor. 
-							Cras porttitor fermentum nisl non elementum. Nulla in placerat libero. Nulla pharetra purus eget diam dictum 
-							ullamcorper nec et eros. Suspendisse consectetur nulla ut volutpat aliquam.
-						</p>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
-	
-	<!-- begin #footer-copyright -->
+    
 	<div id="footer-copyright" class="footer-copyright">
 		<div class="container">
-			<div class="row">
-				<div class="col-md-6">
-					&copy; 2023 Valkyrie Security Inc. All Right Reserved
-				</div>
-				<div class="col-md-6 text-md-right">
-					<a href="#" class="mr-4">Contact Us</a> 
-				</div>
-			</div>
+            <div class="text-center">
+                &copy; 2023 Valkyrie Security Inc. All Right Reserved
+            </div>
 		</div>
 	</div>
-	<!-- end #footer-copyright -->
 	
 	<!-- ================== BEGIN BASE JS ================== -->
 	<script src="{{ url_for('static', filename='one-page-parallax/js/form-app.min.js') }} "></script>
-<!--     
+	<script src="{{ url_for('static', filename='assets/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.js') }} "></script>
+
+    
+    <script>
+        $(document).ready(function(){
+            var upload_resume = document.getElementById('upload-resume'); 
+            // fn    =  document.getElementById('first_name');
+            // md    =  document.getElementById('mid_name');
+            // ln    =  document.getElementById('last_name');
+            
+            // date  =  document.getElementById('datepicker');
+            
+            // street_add      =   document.getElementById('street_add');
+            // street_add_two  =   document.getElementById('street_add_two');
+            // city            =   document.getElementById('city');
+            // province        =   document.getElementById('province');
+            // zip_code        =   document.getElementById('zip_code');
+
+            // email       =   document.getElementById('email');
+            // phone_num   =   document.getElementById('phone_num');
+            // linkedin    =   document.getElementById('linkedin');
+
+            // file_input  =   document.getElementById('file_input');
+            
+
+            var handleDatepicker = function() {
+                $('#datepicker').datepicker({
+                    todayHighlight: true,
+                    autoclose: true
+                });
+            };
+
+            var FormPlugins = function () {
+                "use strict";
+                return {
+                    init: function () {
+                        handleDatepicker();
+                    }
+                };
+            }();
+
+            FormPlugins.init();
+
+
+            // upload_resume.onsubmit = (e)=>{
+            //     e.preventDefault();
+            //     console.log('clicked')
+            //     console.log('-----------------------')
+
+            //     console.log(fn.value)
+            //     console.log(md.value)
+            //     console.log(ln.value)
+            //     console.log(date.value)
+            //     console.log(street_add.value)
+            //     console.log(street_add_two.value)
+            //     console.log(city.value)
+            //     console.log(province.value)
+            //     console.log(zip_code.value)
+            //     console.log(email.value)
+            //     console.log(phone_num.value)
+            //     console.log(linkedin.value)
+            //     console.log(file_input.value)
+            // }
+        });
+    </script>
+
+    <!--     
 	<script src="{{ url_for('static', filename='assets/plugins/parsleyjs/dist/parsley.min.js') }} "></script>
 	<script src="{{ url_for('static', filename='assets/plugins/highlight.js/highlight.min.js') }} "></script>
 	<script src="{{ url_for('static', filename='assets/js/demo/render.highlight.js') }} "></script> -->
