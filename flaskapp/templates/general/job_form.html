@@ -63,6 +63,7 @@
 		<!-- end container -->
 	</div>
 	<!-- end search-banner -->
+    
 	
 	<!-- begin content -->
 	<div class="content pb-5">
@@ -73,34 +74,89 @@
 				<!-- begin card-header -->
 				<div class="card-header">
 					<span class="f-w-600 f-s-18">Inputs with a red asterisk (<span class="text-danger f-s-17">*</span>) are required.</span>
-				
 				</div>
 				<!-- end card-header -->
                 <div class="card-body my-5">
-                    <form id="upload-resume" enctype="multipart/form-data" method="POST">
+                    {% with messages = get_flashed_messages(with_categories=true) %}
+                        {% if messages %}
+                            {% for category, message in messages %}
+                                <div class="alert alert-{{ category }} alert-dismissible fade show" role="alert" >
+                                    <span >{{ message }}</span>
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+
+                            {% endfor %}
+                        {% endif %}
+                    {% endwith %}
+                    
+
+                    <form actoin="{{ url_for('main.job_form') }}" id="upload-resume" enctype="multipart/form-data" method="POST">
+                        {{ form.hidden_tag() }}
+                        
                         <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-user"></i> FULLNAME</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="first_name" placeholder="First Name" data-parsley-required="true" required />
+                                    {% if form.first_name.errors %}
+                                        {{ form.first_name(class='form-control form-control-lg is-invalid', placeholder="First Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.first_name.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.first_name(class='form-control form-control-lg', placeholder="First Name") }}
+                                    {% endif %}
+
+                                    <!-- <input type="text" class="form-control form-control-lg" id="first_name" name="first_name" placeholder="First Name" required /> -->
                                     <label for="First Name"><span class="text-danger f-s-17">*</span> First Name</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="mid_name" placeholder="Middle Name">
-                                <label for="Middle Name">Middle Name</label>
+                                <div class="form-group">
+                                    {% if form.mid_name.errors %}
+                                        {{ form.mid_name(class='form-control form-control-lg is-invalid', placeholder="Middle Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.mid_name.errors %}<h5>{{ error }}</h5>{% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.mid_name(class='form-control form-control-lg', placeholder="Middle Name") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="mid_name" name="mid_name" placeholder="Middle Name"> -->
+                                    <label for="Middle Name">Middle Name</label>
+                                </div>
                             </div>
                             <div class="col-md-4">
-                                <input type="text" class="form-control form-control-lg" id="last_name" placeholder="Last Name" required>
-                                <label for="Last Name"><span class="text-danger f-s-17">*</span> Last Name</label>
+                                <div class="form-group">
+                                    {% if form.last_name.errors %}
+                                        {{ form.last_name(class='form-control form-control-lg is-invalid', placeholder="Last Name") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.last_name.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.last_name(class='form-control form-control-lg', placeholder="Last Name") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="last_name" name="last_name" placeholder="Last Name" required> -->
+                                    <label for="Last Name"><span class="text-danger f-s-17">*</span> Last Name</label>
+                                </div>
                             </div>
                         </div>
 
                         <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-calendar-alt"></i> DATE OF BIRTH</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-12">
-                                <input type="text" class="form-control form-control-lg" id="datepicker" placeholder="mm / dd / yyyy">
-                                <label for="Year"><span class="text-danger f-s-17">*</span> pick the date</label>
+                                <div class="form-group">
+                                    {% if form.datepicker.errors %}
+                                        {{ form.datepicker(class='form-control form-control-lg is-invalid', placeholder="mm / dd / yyyy") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.datepicker.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.datepicker(class='form-control form-control-lg', placeholder="mm / dd / yyyy") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="datepicker" name="datepicker" placeholder="mm / dd / yyyy"> -->
+                                    <label for="dob"><span class="text-danger f-s-17">*</span> pick the date</label>
+                                </div>
                             </div>
                         </div>
                         
@@ -108,32 +164,72 @@
                         <div class="row row-space-10 px-5">
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="street_add" required>
+                                    {% if form.street_add.errors %}
+                                        {{ form.street_add(class='form-control form-control-lg is-invalid', placeholder="Street address") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.street_add.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.street_add(class='form-control form-control-lg', placeholder="Street address") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="street_add" name="street_add" required> -->
                                     <label for=""><span class="text-danger f-s-17">*</span> Street address</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="street_add_two" placeholder="">
+                                    {% if form.street_add_two.errors %}
+                                        {{ form.street_add_two(class='form-control form-control-lg is-invalid', placeholder="Street address two") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.street_add_two.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.street_add_two(class='form-control form-control-lg', placeholder="Street address two") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="street_add_two" name="street_add_two" placeholder=""> -->
                                     <label for="">Street address 2</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="city" required>
+                                    {% if form.city.errors %}
+                                        {{ form.city(class='form-control form-control-lg is-invalid', placeholder="City") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.city.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.city(class='form-control form-control-lg', placeholder="City") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="city" name="city" required> -->
                                     <label for=""><span class="text-danger f-s-17">*</span> City</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="province" required>
+                                    {% if form.province.errors %}
+                                        {{ form.province(class='form-control form-control-lg is-invalid', placeholder="Province") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.province.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.province(class='form-control form-control-lg', placeholder="Province") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="province" name="province" required> -->
                                     <label for=""><span class="text-danger f-s-17">*</span> Province</label>
                                 </div>
                             </div>
                             <div class="col-md-4">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="zip_code" placeholder="6000" required>
-                                    <label for=""><span class="text-danger f-s-17">*</span> Zip Code</label>
+                                    {% if form.zip_code.errors %}
+                                        {{ form.zip_code(class='form-control form-control-lg is-invalid', placeholder="Zip code") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.zip_code.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.zip_code(class='form-control form-control-lg', placeholder="Zip code") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="zip_code" name="zip_code" placeholder="6000" required> -->
+                                    <label for="zip_code"><span class="text-danger f-s-17">*</span> Zip Code</label>
                                 </div>
                             </div>
                         </div>
@@ -142,19 +238,43 @@
                         <div class="row row-space-10 px-5">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="email" class="form-control form-control-lg" id="email" required>
+                                    {% if form.email.errors %}
+                                        {{ form.email(class='form-control form-control-lg is-invalid', placeholder="Email") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.email.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.email(class='form-control form-control-lg', placeholder="Email") }}
+                                    {% endif %}
+                                    <!-- <input type="email" class="form-control form-control-lg" id="email" name="email" required> -->
                                     <label for=""><span class="text-danger f-s-17">*</span> Email</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="phone_num" required>
+                                    {% if form.phone_num.errors %}
+                                        {{ form.phone_num(class='form-control form-control-lg is-invalid', placeholder="Phone number") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.phone_num.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.phone_num(class='form-control form-control-lg', placeholder="Phone number") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="phone_num" name="phone_num" required> -->
                                     <label for=""><span class="text-danger f-s-17">*</span> Phone number</label>
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <input type="text" class="form-control form-control-lg" id="linkedin">
+                                    {% if form.linkedin.errors %}
+                                        {{ form.linkedin(class='form-control form-control-lg is-invalid', placeholder="LinkedIn link") }}
+                                        <div class="invalid-feedback">
+                                            {% for error in form.linkedin.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                        </div>
+                                    {% else %}
+                                        {{ form.linkedin(class='form-control form-control-lg', placeholder="LinkedIn link") }}
+                                    {% endif %}
+                                    <!-- <input type="text" class="form-control form-control-lg" id="linkedin" name="linkedin"> -->
                                     <label for="LinkedIn">LinkedIn (if any)</label>
                                 </div>
                             </div>
@@ -164,7 +284,15 @@
                         <legend class="m-b-15 px-5 pt-3"><i class="fas fa-sm  m-r-5 fa-envelope"></i> UPLOAD RESUME</legend>
                         <div class="row row-space-10 px-5">
                             <div class="col-md-12">
-                                <input type="file" class="custom-file-input_ form-control form-control-lg" id="file_input" required>
+                                {% if form.file_input.errors %}
+                                    {{ form.file_input(class='form-control form-control-lg is-invalid', placeholder="upload resume") }}
+                                    <div class="invalid-feedback">
+                                        {% for error in form.file_input.errors %} <h5>{{ error }}</h5> {% endfor %}
+                                    </div>
+                                {% else %}
+                                    {{ form.file_input(class='form-control form-control-lg', placeholder="upload resume") }}
+                                {% endif %}
+                                <!-- <input type="file" class="custom-file-input_ form-control form-control-lg" id="file_input" name="file_input" required> -->
                                 <label class="mb-3 custom-file-label_" style="font-weight: 300" id="file_input_label"><span class="text-danger f-s-17">*</span> Upload .doc, .docx, .pdf</label>
                             </div>
                         </div>

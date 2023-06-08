@@ -3,7 +3,7 @@ from flaskapp import db
 from sqlalchemy.sql import func
 
 class job_application(db.Model):
-    __tablename__    = 'val_tbl'
+    __tablename__    = 'job_app'
     __table_args__   = {'mysql_charset':'utf8mb4'}
     id            = db.Column(db.Integer, primary_key=True)
     first_nm      = db.Column(db.String(100))
@@ -45,13 +45,5 @@ class job_application(db.Model):
             'dt_created'    : self.dt_created,
         }
 
-    # def __repr__(self):
-    #     return f"Crud_tbl('{self.ct_id}', '{self.some_string}', '{self.some_text}', '{self.some_int}')"
-
-    # def __init__(self, ct_id, some_string, some_text, some_int):
-    #     self.ct_id = ct_id
-    #     self.some_string = some_string
-    #     self.some_text = some_text
-    #     self.some_int = some_int
 
  

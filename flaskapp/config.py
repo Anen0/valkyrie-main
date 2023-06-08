@@ -6,22 +6,24 @@ with open('/etc/valkur_configs.json') as config_file:
 
 
 class Config:
-    # db_user = str(config.get("DBUSER"))
-    # db_pass = str(config.get("DBPASS"))
+    db_user = str(config.get("DBUSER"))
+    db_pass = str(config.get("DBPASS"))
     # Set up secret key
-    SECRET_KEY = 'config.get("SK")'
+    SECRET_KEY = config.get("SK")
     FLASK_ENV = 'production'
 
 
     # SQLALCHEMY CONFIGS
-    # SQLALCHEMY_DATABASE_URI = str(config.get('SQLALCHEMY_DATABASE_URI'))
-    SQLALCHEMY_DATABASE_URI = "mysql://nomad:{}@localhost/val-tbl".format(url_quote('qwe123xU'))
+    SQLALCHEMY_DATABASE_URI = config.get('DB_URI')
     # SQLALCHEMY_BINDS = {
     #     'vetting': "mysql://nomad:{}@localhost/vetting?charset=utf8mb4".format(url_quote('qwe123!@#')),
     #     'db_test': 
     # }
     SQLALCHEMY_TRACK_MODIFICATIONS = False
 
+    # Upload the files from thje form
+    UPLOAD_FOLDER = os.getcwd()+'/flaskapp/static/file_upload'
+    ALLOWED_EXTENSIONS = {'doc', 'docx', 'pdf'}
 
 
     

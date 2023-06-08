@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-from flaskapp import run_dammit
+from flaskapp import run_dammit, db
 
 app = run_dammit()
 

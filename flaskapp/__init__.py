@@ -30,7 +30,7 @@ def run_dammit(config_class=Config):
 
     # Initialize packages
     # mysql.init_app(app)
-    # db.init_app(app)
+    db.init_app(app)
     migrate.init_app(app, db)
     # bcrypt.init_app(app)
     jsglue.init_app(app)
@@ -40,13 +40,12 @@ def run_dammit(config_class=Config):
     # login_manager.login_view = 'main.login'
     # login_manager.login_message_category = 'info'
     
+    with app.app_context():
+        from flaskapp.py_routes.main_routes.general_routes import main
 
-    from flaskapp.py_routes.main_routes.general_routes import main
+        app.register_blueprint(main)
 
-    app.register_blueprint(main)
-
-    # with app.test_request_context():
-    #     db.create_all()
+        # db.create_all()
     
 
-    return app
+        return app
