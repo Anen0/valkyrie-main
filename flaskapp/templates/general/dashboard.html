@@ -174,14 +174,11 @@
 		
 		<!-- begin #quote -->
 		<div id="quote" class="content bg-black-darker has-bg" data-scrollview="true">
-			<!-- begin content-bg -->
 			<div class="content-bg" style="background-image: url(static/one-page-parallax/img/custom_img/security-1.jpg)"
 				data-paroller-factor="0.5"
 				data-paroller-factor-md="0.01"
 				data-paroller-factor-xs="0.01">
 			</div>
-			<!-- end content-bg -->
-			<!-- begin container -->
 			<div class="container" data-animation="true" data-animation-type="fadeInLeft">
 				<div class="row justify-content-center">
 					<div class="col-lg-8 quote">
@@ -191,7 +188,6 @@
 					</div>
 				</div>
 			</div>
-			<!-- end container -->
 		</div>
 		<!-- end #quote -->
 
@@ -357,70 +353,15 @@
 		</div>
 		<!-- end #about -->
 		
-		<!-- begin #team -->
-		<!-- <div id="team" class="content" data-scrollview="true">
-			<div class="container text-center">
-				<h2 class="content-title">OUR TEAM</h2>
-				<p class="content-desc">
-					Phasellus suscipit nisi hendrerit metus pharetra dignissim. Nullam nunc ante, viverra quis<br /> 
-					ex non, porttitor iaculis nisi.
-				</p>
-				<div class="row">
-					<div class="col-lg-4">
-						<div class="team">
-							<div class="image" data-animation="true" data-animation-type="flipInX">
-								<img src=" {{ url_for('static', filename='one-page-parallax/img/user/user-1.jpg') }} " alt="Ryan Teller" />
-							</div>
-							<div class="info">
-								<h3 class="name">Ryan Teller</h3>
-								<div class="title text-primary">FOUNDER</div>
-								<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="team">
-							<div class="image" data-animation="true" data-animation-type="flipInX">
-								<img src="{{ url_for('static', filename='one-page-parallax/img/user/user-2.jpg') }}" alt="Jonny Cash" />
-							</div>
-							<div class="info">
-								<h3 class="name">Johnny Cash</h3>
-								<div class="title text-primary">WEB DEVELOPER</div>
-								<p>Donec quam felis, ultricies nec, pellentesque eu sem. Nulla consequat massa vierra quis enim.</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4">
-						<div class="team">
-							<div class="image" data-animation="true" data-animation-type="flipInX">
-								<img src="{{ url_for('static', filename='one-page-parallax/img/user/user-3.jpg') }}" alt="Mia Donovan" />
-							</div>
-							<div class="info">
-								<h3 class="name">Mia Donovan</h3>
-								<div class="title text-primary">WEB DESIGNER</div>
-								<p>Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean ligula imperdiet. </p>
-							</div>
-						</div>
-					</div>
-				</div>
-				<a href="#" class="btn btn-theme btn-primary mt-3">View All</a>
-			</div>
-		</div> -->
-		<!-- end #team -->
-		
 		
 		<!-- beign #action-box -->
 		<div id="action-box" class="content has-bg" data-scrollview="true">
-			<!-- begin content-bg -->
 			<div class="content-bg" style="background-image: url(static/one-page-parallax/img/custom_img/security-3.jpg)"
 				data-paroller-factor="0.5"
 				data-paroller-factor-md="0.01"
 				data-paroller-factor-xs="0.01">
 			</div>
-			<!-- end content-bg -->
-			<!-- begin container -->
 			<div class="container" data-animation="true" data-animation-type="fadeInRight">
-				<!-- begin row -->
 				<div class="row justify-content-center">
 					<div class="col-lg-8  quote">
 						<i class="fa fa-quote-left"></i> 
@@ -428,12 +369,32 @@
 						<i class="fa fa-quote-right"></i>
 					</div>
 				</div>
-				<!-- end row -->
-
 			</div>
-			<!-- end container -->
 		</div>
 		<!-- end #action-box -->
+
+		<!-- begin #team -->
+		<div id="team" class="content" data-scrollview="true">
+			<div class="container text-center">
+				<h2 class="content-title">JOIN OUR TEAM</h2>
+				<p class="content-desc mb-4">
+					From small to medium firearms training to defensive driving and close protection techniques, 
+					our training programs are designed to ensure that you become a proficient and confident 
+					security professional. Join us and be part of an esteemed team that values professionalism, 
+					integrity, and excellence in providing top-tier security services. Take the first step 
+					towards a fulfilling and exciting career by joining team.
+				</p>
+
+				<a href="{{ url_for('main.job_form') }}" class="btn btn-theme btn-green">
+					<span class="d-flex align-items-center text-left">
+						<i class="fas fa-file-alt fa-2x mr-3 "></i>
+						<span class="d-block mb-n1 f-s-20">Send your application here</span>
+					</span>
+				</a>
+
+			</div>
+		</div>
+		<!-- end #team -->
 		
 		
 		<!-- begin #contact -->
