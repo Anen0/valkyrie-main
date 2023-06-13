@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+
 # PACKAGES
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -7,6 +7,7 @@ from flask_jsglue import JSGlue
 from flask_bcrypt import Bcrypt
 from flask_migrate import Migrate
 from flask_login import LoginManager
+from flask_mail import Mail
 
 # Call config
 from flaskapp.config import Config
@@ -14,6 +15,7 @@ from flaskapp.config import Config
 
 # SET PACKAGES
 db              = SQLAlchemy()
+mail            = Mail()
 migrate         = Migrate()
 bcrypt          = Bcrypt()
 login_manager   = LoginManager()
@@ -29,8 +31,8 @@ def run_dammit(config_class=Config):
 
 
     # Initialize packages
-    # mysql.init_app(app)
     db.init_app(app)
+    mail.init_app(app)
     migrate.init_app(app, db)
     # bcrypt.init_app(app)
     jsglue.init_app(app)

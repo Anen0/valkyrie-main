@@ -35,6 +35,7 @@ typing-extensions = "==4.4.0"
 werkzeug = "==2.2.2"
 wtforms = "==3.0.1"
 zipp = "==3.11.0"
+flask-mail = "*"
 
 [dev-packages]
 

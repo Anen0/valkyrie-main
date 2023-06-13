@@ -1,4 +1,5 @@
 import os
+from datetime import datetime
 from flask import render_template, jsonify, request, redirect, url_for, flash
 from werkzeug.utils import secure_filename
 
@@ -10,7 +11,8 @@ from flaskapp.models.crud_model import job_application
 # Forms
 from flaskapp.py_forms.crud_forms import input_forms_job
 
-from flaskapp import db, run_dammit
+from flaskapp import db, mail, run_dammit
+from flask_mail import Message
 app = run_dammit()
 
 
@@ -36,13 +38,8 @@ def job_form():
 
     # if request.method == 'GET':
     if request.method == 'POST':
-        # print('\n')
-        # print('POST')
-        # print('\n')
         if form.validate_on_submit:
-            # print('validate on submit')
             first_name      = form.first_name.data
-            print('first name: '+(str(first_name)))
             mid_name        = form.mid_name.data
             last_name       = form.last_name.data
             datepicker      = form.datepicker.data
@@ -56,14 +53,30 @@ def job_form():
             linkedin        = form.linkedin.data
             file_input      = form.file_input.data
 
+            cur = datetime.now()
+            display_dt = str(cur.month)+'-'+str(cur.day)+'-'+str(cur.year)+'_'+str(cur.hour)+':'+str(cur.minute)+':'+str(cur.second)
+            display_wrd = str(cur.strftime('%B'))+' '+str(cur.strftime('%d'))+', '+str(cur.strftime('%Y'))+' '+str(cur.hour)+':'+str(cur.minute)+':'+str(cur.second)
+
             # Upload the resume to the folder
-            sec_file        = secure_filename(file_input.filename)
+            sec_file = secure_filename(file_input.filename)
             file_input.save(os.path.join(app.config['UPLOAD_FOLDER'], sec_file))
+
            
-            # Renamed the file once save in folder
-            renamed_resume_filepath = app.config['UPLOAD_FOLDER']+'/'+'RESUME_'+str(first_name)+'_'+str(last_name)+'_'+sec_file
-            renamed_resume_name = 'RESUME_'+str(first_name)+'_'+str(last_name)+'_'+sec_file
+            # Renamed the file once save in folder +'_'+str(display_dt)
+            renamed_resume_name     = 'RESUME_'+str(first_name)+'_'+str(last_name)+'_'+display_dt+'_'+sec_file
+            renamed_resume_filepath = app.config['UPLOAD_FOLDER']+'/'+renamed_resume_name
             os.rename(app.config['UPLOAD_FOLDER']+'/'+sec_file, renamed_resume_filepath)
+
+            # print('\n')
+            # print('\n')
+            # print('renamed_resume_name')
+            # print(renamed_resume_name)
+            # print('\n')
+            # print('renamed_resume_filepath')
+            # print(renamed_resume_filepath)
+            # print('\n')
+            # print('\n')
+
 
             save_dem_resume  = job_application(
                 first_nm     = first_name,
@@ -83,10 +96,49 @@ def job_form():
             db.session.add(save_dem_resume)
             db.session.commit()
 
-            flash('Application sent.', 'success')
-            # return jsonify('done')
+            body = ''
+            if linkedin:
+                body = f'''Recieved job application from {str(first_name)} {str(mid_name)} {str(last_name)}.\n  
+Sent on {str(display_wrd)}. \n 
+Contact details: 
+Email: {str(email)} 
+Phone: {str(phone_num)}
+LinkedIn link: {str(linkedin)}'''
+            else:
+                body = f'''Recieved job application from {str(first_name)} {str(mid_name)} {str(last_name)}.\n  
+Sent on {str(display_wrd)}.\n 
+Contact details: \n 
+Email: {str(email)}
+Phone: {str(phone_num)}'''
+            
+            subject = 'VALKYRIE APPLICANT RESUME: '+str(first_name)+' '+str(last_name)
+            
+            # print('\n')
+            # print('\n')
+            # print(body)
+            # print('\n')
+            # print('\n')
+            # print(subject)
+            # print('\n')
 
+            msg = Message(subject = subject, 
+                          sender = app.config['MAIL_USERNAME'], 
+                          recipients = ["valkyrie@ashgard.com.ph"],
+                          body = body,
+                        )
+            # recipients= ["valkyrie@ashgard.com.ph"],
+            msg.add_recipient("wW1nd0waker@gmail.com")
+            src = str(app.config['UPLOAD_FOLDER']+'/'+renamed_resume_name)
+            with app.open_resource(src) as fp:
+                msg.attach(renamed_resume_name, "application/pdf", fp.read())
+            
+                mail.send(msg)
+
+
+
+            flash('Application has been sent. A resonse will be sent to your email .', 'success')
             return redirect(request.url)
+
 
     return render_template('general/job_form.html', page_title=page_title , form=form)
 
